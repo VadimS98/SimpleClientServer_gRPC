@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+// Service to process requests
+
 class PrintService final : public greetandprint::Print::Service {
 public:
     virtual ::grpc::Status Print(::grpc::ServerContext* context, const ::greetandprint::Command* request, ::greetandprint::Error* response)
@@ -36,6 +38,8 @@ int main(int argc, char* argv[])
 
     PrintService printService;
     builder.RegisterService(&printService);
+
+    // Initialize server
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
     std::cout << "Server listening on " << server_address << std::endl;

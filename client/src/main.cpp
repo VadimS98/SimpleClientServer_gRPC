@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 
+// Client that manages what func to call
+
 class MyServiceClient {
 public:
     MyServiceClient(std::shared_ptr<grpc::Channel> printChannel)
@@ -29,6 +31,9 @@ public:
     }
 
 private:
+
+    // Just an error responce
+
     void UnknownCommand(const std::string& command) 
     {
         greetandprint::Command request;
@@ -39,6 +44,8 @@ private:
         std::cout << response.answer() << std::endl;
     }
 
+    // To create 'hello' request
+
     void SendGreeting(const std::string& command)
     {
         greetandprint::Command request;
@@ -46,6 +53,8 @@ private:
 
         SendRequest(request);
     }
+
+    // To create 'print' request with message
 
     void SendPrinting(const std::string& command, const std::string& message)
     {
@@ -55,6 +64,8 @@ private:
 
         SendRequest(request);
     }
+
+    // To send premade requestes && get responce 
 
     greetandprint::Error SendRequest(greetandprint::Command request)
     {
@@ -96,6 +107,8 @@ int main(int argc, char* argv[])
         if (firstWord == "print") {
             message = input.substr(input.find(" ") + 1);
         }
+
+        // To exit
         else if (firstWord == "exit")
         {
             return 0;
