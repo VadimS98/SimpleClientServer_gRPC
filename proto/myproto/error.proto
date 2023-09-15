@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package greetandprint;
+
+message Error {
+    string answer = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package greetandprint;
+
+import "myproto/error.proto";
+import "google/protobuf/empty.proto";
+
+message Command {
+    string command = 1;
+    string text = 2;
+}
+
+service Print {
+    rpc Print(Command) returns (Error) {}
+}
