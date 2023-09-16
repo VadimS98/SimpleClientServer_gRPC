@@ -24,6 +24,11 @@ public:
         {
             SendPrinting(command, message);
         }
+        else if (command == "exit")
+        {
+            SendExit(command);
+            exit(0);
+        }
         else
         {
             UnknownCommand(command);
@@ -42,6 +47,16 @@ private:
         greetandprint::Error response = SendRequest(request);
 
         std::cout << response.answer() << std::endl;
+    }
+
+    // To close client && server
+
+    void SendExit(const std::string& command)
+    {
+        greetandprint::Command request;
+        request.set_command(command);
+
+        SendRequest(request);
     }
 
     // To create 'hello' request
@@ -106,12 +121,6 @@ int main(int argc, char* argv[])
 
         if (firstWord == "print") {
             message = input.substr(input.find(" ") + 1);
-        }
-
-        // To exit
-        else if (firstWord == "exit")
-        {
-            return 0;
         }
         else
         {

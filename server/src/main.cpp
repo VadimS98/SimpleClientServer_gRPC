@@ -19,6 +19,9 @@ public:
         else if (request->command() == "print") {
             std::cout << request->text() << std::endl;
         }
+        else if (request->command() == "exit") {
+            exit(0);
+        }
         else {
             std::cout << "Server: GotCommand for \"" << request->command() << "\"." << std::endl;
 
